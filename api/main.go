@@ -1,13 +1,15 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/FranciscoMendes10866/listry/api/router"
+	"github.com/gofiber/fiber/v2"
+)
 
 func main() {
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	router.AuthRouter(app)
+	router.AdressesRouter(app)
 
 	app.Listen(":1080")
 }

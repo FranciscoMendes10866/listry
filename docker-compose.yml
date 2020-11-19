@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: listry_db
+    ports:
+      - '5664:5432'
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: listry
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d/
+
