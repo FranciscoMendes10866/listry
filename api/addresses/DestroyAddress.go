@@ -4,12 +4,11 @@ import (
 	"context"
 
 	"github.com/FranciscoMendes10866/listry/api/db"
-	"github.com/form3tech-oss/jwt-go"
 	"github.com/gofiber/fiber/v2"
 )
 
-// FindAddress ...
-func FindAddress(c *fiber.Ctx) error {
+// DestroyAddress ...
+func DestroyAddress(c *fiber.Ctx) error {
 	// Prisma Client
 	prisma := db.NewClient()
 	err := prisma.Connect()
@@ -23,17 +22,15 @@ func FindAddress(c *fiber.Ctx) error {
 		}
 	}()
 	ctx := context.Background()
-	// token payload
-	user := c.Locals("user").(*jwt.Token)
-	claims := user.Claims.(jwt.MapClaims)
-	tokenID := claims["id"].(string)
-	// database query
-	query, err := prisma.Addresses.FindMany(
-		db.Addresses.UserID.Equals(tokenID),
-	).Exec(ctx)
+	// Address ID
+	addressID := c.Params("id")
+	// delete method
+	destroy, err := prisma.Addresses.FindOne(
+		db.Addresses.ID.Equals(addressID),
+	).Delete().Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	// response
-	return c.JSON(query)
+	return c.JSON(destroy.ID)
 }
