@@ -12,4 +12,5 @@ func AdressesRouter(app *fiber.App) {
 	api.Post("/", guards.Protected(), addresses.CreateAddress)
 	api.Get("/", guards.Protected(), addresses.FindAddress)
 	api.Delete("/:id", guards.Protected(), addresses.DestroyAddress)
+	api.Put("/:id", guards.Protected(), addresses.UpdateAddress)
 }
