@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/FranciscoMendes10866/listry/api/db"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/form3tech-oss/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
