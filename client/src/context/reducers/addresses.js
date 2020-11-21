@@ -8,6 +8,14 @@ const addresses = (state, { payload, type }) => {
                     list: payload
                 }
             }
+        case 'LOG_OUT_ADDRESSES':
+            return {
+                ...state,
+                addresses: {
+                    ...state.addresses,
+                    list: payload,
+                }
+            }
         default:
             return state
     }

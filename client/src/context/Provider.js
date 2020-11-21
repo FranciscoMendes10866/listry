@@ -10,9 +10,12 @@ export const GlobalContext = createContext({})
 export const GlobalProvider = ({ children }) => {
     const [authState, authDispatch] = useReducer(auth, authInitialState, () => {
         const localToken = localStorage.getItem('token')
-        return localToken ? { auth: { token: localToken } } : { auth: { token: null } }
+        return localToken ? { auth: { token: JSON.parse(localToken) } } : { auth: { token: null } }
     })
-    const [addressesState, addressesDispatch] = useReducer(addresses, addressesInitialState)
+    const [addressesState, addressesDispatch] = useReducer(addresses, addressesInitialState, () => {
+        const localList = localStorage.getItem('list')
+        return localList ? { addresses: { list: JSON.parse(localList) } } : { addresses: { list: [] } }
+    })
     return (
         <GlobalContext.Provider
             value={{

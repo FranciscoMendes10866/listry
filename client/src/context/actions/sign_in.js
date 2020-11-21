@@ -8,7 +8,7 @@ export const  sign_in = ({ email, password }) => (dispatch) => {
                 type: 'SIGN_IN',
                 payload: data.token
             })
-            localStorage.setItem('token', data.token)
+            localStorage.setItem('token', JSON.stringify(data.token))
         })
         .catch((err) => {
             console.log(err)

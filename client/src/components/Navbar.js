@@ -5,14 +5,16 @@ import { Menu, Button } from 'semantic-ui-react'
 
 import { GlobalContext } from '../context/Provider'
 import { log_out } from '../context/actions/log_out'
+import { log_out_addresses } from '../context/actions/log_out_addresses'
 
 const Navbar = () => {
-    const { authDispatch, authState } = useContext(GlobalContext)
+    const { authDispatch, authState, addressesDispatch } = useContext(GlobalContext)
     const history = useHistory()
     const [loggedIn, setLoggedIn] = useState(false)
     const stateToken = authState.auth.token
     const handleOnClick = () => {
         log_out()(authDispatch)
+        log_out_addresses()(addressesDispatch)
         history.push('/sign-in')
     }
     let navItems

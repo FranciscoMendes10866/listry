@@ -7,6 +7,6 @@ export const  get_addresses = () => (dispatch) => {
                 type: 'GET_ADDRESSES',
                 payload: data
             })
-            localStorage.setItem('list', data)
+            localStorage.setItem('list', JSON.stringify(data))
         })
 }
