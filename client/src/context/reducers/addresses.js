@@ -16,6 +16,14 @@ const addresses = (state, { payload, type }) => {
                     list: payload,
                 }
             }
+        case 'DELETE_ADDRESS':
+            return {
+                ...state,
+                addresses: {
+                    ...state.addresses,
+                    list: state.addresses.list.filter((item) => item.id !== payload)
+                }
+            }
         default:
             return state
     }

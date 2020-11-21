@@ -3,9 +3,10 @@ import axios from 'axios'
 const apiURL = 'http://localhost:1080/api/v1'
 const headers = {}
 const localStorageToken = localStorage.getItem('token')
+const Parser = JSON.parse(localStorageToken)
 
-if (localStorageToken) {
-    headers.Authorization = `Bearer ${localStorageToken}`
+if (Parser) {
+    headers.Authorization = `Bearer ${Parser}`
 }
 
 const axiosInstance = axios.create({
