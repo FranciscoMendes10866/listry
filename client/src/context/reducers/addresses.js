@@ -1,5 +1,13 @@
 const addresses = (state, { payload, type }) => {
-    switch(type) {
+    switch (type) {
+        case 'GET_ADDRESSES':
+            return {
+                ...state,
+                addresses: {
+                    ...state.addresses,
+                    list: payload
+                }
+            }
         default:
             return state
     }
