@@ -12,10 +12,7 @@ export const GlobalProvider = ({ children }) => {
         const localToken = localStorage.getItem('token')
         return localToken ? { auth: { token: JSON.parse(localToken) } } : { auth: { token: null } }
     })
-    const [addressesState, addressesDispatch] = useReducer(addresses, addressesInitialState, () => {
-        const localList = localStorage.getItem('list')
-        return localList ? { addresses: { list: JSON.parse(localList) } } : { addresses: { list: [] } }
-    })
+    const [addressesState, addressesDispatch] = useReducer(addresses, addressesInitialState)
     return (
         <GlobalContext.Provider
             value={{

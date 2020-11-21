@@ -24,6 +24,14 @@ const addresses = (state, { payload, type }) => {
                     list: state.addresses.list.filter((item) => item.id !== payload)
                 }
             }
+        case 'UPDATE_ADDRESS':
+            return {
+                ...state,
+                addresses: {
+                    ...state.addresses,
+                    list: state.addresses.list.filter((item) => item !== payload),
+                }
+            }
         default:
             return state
     }
